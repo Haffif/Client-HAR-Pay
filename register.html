@@ -23,12 +23,19 @@
 
   <body>
     <header>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <nav class="navbar navbar-dark bg-primary">
         <div class="container">
-          <a class="navbar-brand" href="#">HAR Pay</a>
-          <a href="" class="text-white text-decoration-none"
-            >Login <i class="fa-solid fa-arrow-right-to-bracket"></i
-          ></a>
+          <a class="navbar-brand" href="#">
+            <img src="./images/main_logo.png" alt="Logo" />
+          </a>
+          <div>
+            <a href="login.html" class="text-white text-decoration-none me-3"
+              >Login <i class="fa-solid fa-arrow-right-to-bracket"></i
+            ></a>
+            <a href="register.html" class="text-white text-decoration-none"
+              >Registrasi <i class="fa-solid fa-address-card"></i
+            ></a>
+          </div>
         </div>
       </nav>
     </header>
@@ -58,7 +65,9 @@
             />
           </div>
           <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">No. Telepon</label>
+            <label for="exampleInputEmail1" class="form-label"
+              >No. Telepon</label
+            >
             <input
               type="number"
               class="form-control"
@@ -87,7 +96,9 @@
             />
           </div>
           <div class="mb-3">
-            <span class="psw float-right"><a href="#">Sudah Memiliki Akun</a></span>
+            <span class="psw float-right"
+              ><a href="#">Sudah Memiliki Akun</a></span
+            >
           </div>
           <button type="submit" class="btn btn-primary">Daftar</button>
         </form>

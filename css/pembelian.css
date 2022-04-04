@@ -1,0 +1,25 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* navbar styling */
+  nav a.navbar-brand img {
+    width: 30px;
+    margin-top: -5px;
+  }
+  
+  footer {
+      margin-top: 89px;
+  }
+  main {
+      width: 50%;
+  }
+  
+  @media screen and (max-width: 776px) {
+      main {
+          width: 100vw;
+      }
+  }
+  

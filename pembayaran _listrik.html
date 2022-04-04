@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login</title>
+    <title>Pembayaran Listrik</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -18,7 +18,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <link rel="stylesheet" href="./css/register.css" />
+    <link rel="stylesheet" href="./css/pembayaran_listrik.css" />
   </head>
 
   <body>
@@ -29,81 +29,47 @@
             <img src="./images/main_logo.png" alt="Logo" />
           </a>
           <div>
-            <a href="login.html" class="text-white text-decoration-none me-3"
-              >Login <i class="fa-solid fa-arrow-right-to-bracket"></i
-            ></a>
-            <a href="register.html" class="text-white text-decoration-none"
-              >Registrasi <i class="fa-solid fa-address-card"></i
+            <a href="#" class="text-white text-decoration-none"
+              >Akun <i class="fa-solid fa-address-card"></i
             ></a>
           </div>
         </div>
       </nav>
     </header>
 
-    <main class="mx-auto mt-5">
+    <main class="mx-auto mt-3 mb-5">
       <div class="container">
         <form>
-          <div class="title-daftar mb-5">
-            <h2 class="text-center">Daftar</h2>
+          <div class="title-pembayaran mb-5">
+            <h2 class="text-center">Pembayaran Listrik</h2>
+            <br />
           </div>
           <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Nama</label>
+            <label for="exampleInputIDPelanggan1" class="form-label"
+              >ID Pelanggan</label
+            >
             <input
-              type="name"
+              type="tel"
               class="form-control"
-              id="exampleInputnama1"
-              aria-describedby="namaHelp"
-            />
-          </div>
-          <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Email</label>
-            <input
-              type="email"
-              class="form-control"
-              id="exampleInputEmail1"
+              id="exampleInputIDPelanggan1"
               aria-describedby="emailHelp"
             />
           </div>
           <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label"
-              >No. Telepon</label
-            >
-            <input
-              type="number"
-              class="form-control"
-              id="exampleInputNumber"
-              aria-describedby="numberHelp"
-            />
-          </div>
-          <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label"
-              >Password</label
+            <label for="exampleInputPin1" class="form-label"
+              >PIN</label
             >
             <input
               type="password"
               class="form-control"
-              id="exampleInputPassword1"
+              id="exampleInputPin1"
             />
           </div>
-          <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label"
-              >Konfirmasi Password</label
-            >
-            <input
-              type="password"
-              class="form-control"
-              id="exampleInputPassword1"
-            />
-          </div>
-          <div class="mb-3">
-            <span class="psw float-right"
-              ><a href="login.html">Sudah Memiliki Akun</a></span
-            >
-          </div>
-          <button type="submit" class="btn btn-primary">Daftar</button>
+          <button type="submit" class="btn btn-primary">Konfirmasi</button>
         </form>
       </div>
     </main>
+
     <!-- footer -->
     <footer class="bg-light text-center">
       <!-- Grid container -->

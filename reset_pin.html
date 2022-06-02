@@ -18,7 +18,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <link rel="stylesheet" href="./css/reset_pin.css" />
+    <link rel="stylesheet" href="./css/style.css" />
   </head>
 
   <body>
@@ -39,32 +39,31 @@
 
     <main class="mx-auto mt-3 mb-5">
       <div class="container">
+        <p class="error" style="color: green" id="hasil"></p>
         <form>
           <div class="title-make-pin mb-5">
-            <h2 class="text-center">Reset PIN</h2>
+            <h2 class="text-center">Update PIN</h2>
             <br />
           </div>
           <div class="mb-3">
             <label for="exampleInputIDPin1" class="form-label">PIN Baru</label>
             <input
-              type="password"
+              type="number"
               class="form-control"
               id="exampleInputIDPin1"
               aria-describedby="PinHelp"
             />
           </div>
           <div class="mb-3">
-            <label for="exampleInputConfirmPin1" class="form-label"
-              >Konfirmasi PIN Baru</label
-            >
+            <label for="exampleInputConfirmPin1" class="form-label">Konfirmasi PIN Baru</label>
             <input
-              type="password"
+              type="number"
               class="form-control"
               id="exampleInputConfirmPin1"
             />
           </div>
           <div class="col-md-12 text-center">
-            <button type="submit" class="btn btn-primary">Reset PIN</button>
+            <button type="submit" class="btn btn-primary" id="btn-submit">Update PIN</button>
           </div>
         </form>
       </div>
@@ -158,5 +157,39 @@
       integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
       crossorigin="anonymous"
     ></script>
+    <script>
+      var myHeaders = new Headers();
+      myHeaders.append("Content-Type", "application/json");
+
+      const pin = document.querySelector("#exampleInputIDPin1");
+      const konfirmasiPin = document.querySelector("#exampleInputConfirmPin1");
+
+      const buttonSubmit = document.querySelector("#btn-submit");
+      const hasil = document.querySelector("#hasil");
+
+      buttonSubmit.addEventListener("click", (e) => {
+        e.preventDefault(); // mencegah refresh
+
+        var raw = JSON.stringify({
+          pin: pin.value,
+          konfirmasiPin: konfirmasiPin.value
+        });
+
+        var requestOptions = {
+          method: 'POST',
+          headers: myHeaders,
+          body: raw,
+          redirect: 'follow'
+        };
+
+        fetch("https://harpay-api.herokuapp.com/auth/updatePin", requestOptions)
+          .then(response => response.json())
+          .then((result) => {
+            // masukin di html
+            hasil.innerHTML = result.message;
+          })
+          .catch(error => console.log('error', error));
+      });
+    </script>
   </body>
 </html>

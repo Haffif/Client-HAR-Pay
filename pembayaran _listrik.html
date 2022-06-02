@@ -18,7 +18,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <link rel="stylesheet" href="./css/pembayaran_listrik.css" />
+    <link rel="stylesheet" href="./css/style.css" />
   </head>
 
   <body>
@@ -39,6 +39,7 @@
 
     <main class="mx-auto mt-3 mb-5">
       <div class="container">
+        <p class="error" style="color: green" id="hasil"></p>
         <form>
           <div class="title-pembayaran mb-5">
             <h2 class="text-center">Pembayaran Listrik</h2>
@@ -49,10 +50,10 @@
               >ID Pelanggan</label
             >
             <input
-              type="tel"
+              type="text"
               class="form-control"
               id="exampleInputIDPelanggan1"
-              aria-describedby="emailHelp"
+              aria-describedby="IDPelangganHelp"
             />
           </div>
           <div class="mb-3">
@@ -66,7 +67,7 @@
             />
           </div>
           <div class="col-md-12 text-center">
-            <button type="submit" class="btn btn-primary">Konfirmasi</button>
+            <button type="submit" class="btn btn-primary" id="btn-submit">Konfirmasi</button>
           </div>
         </form>
       </div>
@@ -160,5 +161,40 @@
       integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
       crossorigin="anonymous"
     ></script>
+
+    <script>
+      var myHeaders = new Headers();
+      myHeaders.append("Content-Type", "application/json");
+
+      const idPelanggan = document.querySelector("#exampleInputIdPelanggan1");
+      const pin = document.querySelector("#exampleInputPin1");
+
+      const buttonSubmit = document.querySelector("#btn-submit");
+      const hasil = document.querySelector("#hasil");
+
+      buttonSubmit.addEventListener("click", (e) => {
+        e.preventDefault(); // mencegah refresh
+
+        var raw = JSON.stringify({
+          idPelanggan: idPelanggan.value,
+          pin: pin.value
+        });
+
+        var requestOptions = {
+          method: 'POST',
+          headers: myHeaders,
+          body: raw,
+          redirect: 'follow'
+        };
+
+        fetch("https://harpay-api.herokuapp.com/transaksi/pembayaranListrik", requestOptions)
+        .then(response => response.json())
+        .then((result) => {
+            // masukin di html
+            hasil.innerHTML = result.message;
+          })
+        .catch(error => console.log('error', error));
+        });
+    </script>
   </body>
 </html>

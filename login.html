@@ -18,7 +18,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <link rel="stylesheet" href="./css/login.css" />
+    <link rel="stylesheet" href="./css/style.css" />
   </head>
 
   <body>
@@ -42,6 +42,7 @@
 
     <main class="mx-auto mt-3 mb-5">
       <div class="container">
+        <p class="error" style="color: green" id="hasil"></p>
         <form>
           <div class="title-login mb-3">
             <h2 class="text-center">Login</h2>
@@ -67,9 +68,13 @@
             />
           </div>
           <div class="mb-3">
-            <span class="psw float-right"><a href="resetpassword.html">Reset Password?</a></span>
+            <span class="psw float-right"
+              ><a href="resetpassword.html">Reset Password?</a></span
+            >
           </div>
-          <button type="submit" class="btn btn-primary">LOGIN</button>
+          <button type="submit" class="btn btn-primary" id="btn-submit">
+            LOGIN
+          </button>
         </form>
       </div>
     </main>
@@ -162,5 +167,40 @@
       integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
       crossorigin="anonymous"
     ></script>
+
+    <script>
+      var myHeaders = new Headers();
+      myHeaders.append("Content-Type", "application/json");
+
+      const email = document.querySelector("#exampleInputEmail1");
+      const password = document.querySelector("#exampleInputPassword1");
+
+      const buttonSubmit = document.querySelector("#btn-submit");
+      const hasil = document.querySelector("#hasil");
+
+      buttonSubmit.addEventListener("click", (e) => {
+        e.preventDefault(); // mencegah refresh
+
+        var raw = JSON.stringify({
+          email: email.value,
+          password: password.value,
+        });
+
+        var requestOptions = {
+          method: "POST",
+          headers: myHeaders,
+          body: raw,
+          redirect: "follow",
+        };
+
+        fetch("https://harpay-api.herokuapp.com/auth/login", requestOptions)
+          .then((response) => response.json())
+          .then((result) => {
+            // masukin di html
+            hasil.innerHTML = result.message;
+          })
+          .catch((error) => console.log("error", error));
+      });
+    </script>
   </body>
 </html>

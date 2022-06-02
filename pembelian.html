@@ -18,7 +18,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <link rel="stylesheet" href="./css/pembelian.css" />
+    <link rel="stylesheet" href="./css/style1.css" />
   </head>
 
   <body>
@@ -45,18 +45,18 @@
             <br />
           </div>
           <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label"
+            <label for="exampleInputIDPelanggan1" class="form-label"
               >ID pelanggan</label
             >
             <input
-              type="number"
+              type="text"
               class="form-control"
-              id="exampleInputNumber1"
+              id="exampleInputIDPelanggan1"
               aria-describedby="IDpelangganHelp"
             />
           </div>
           <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Nominal</label>
+            <label for="exampleInputNominal1" class="form-label">Nominal</label>
             <input
               type="number"
               class="form-control"
@@ -65,7 +65,7 @@
             />
           </div>
           <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">PIN</label>
+            <label for="exampleInputPin1" class="form-label">PIN</label>
             <input
               type="number"
               class="form-control"
@@ -74,7 +74,9 @@
             />
           </div>
           <div class="col-md-12 text-center">
-            <button type="submit" class="btn btn-primary">Konfirmasi</button>
+            <button type="submit" class="btn btn-primary" id="btn-submit">
+              Konfirmasi
+            </button>
           </div>
         </form>
       </div>
@@ -168,5 +170,45 @@
       integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
       crossorigin="anonymous"
     ></script>
+
+    <script>
+      var myHeaders = new Headers();
+      myHeaders.append("Content-Type", "application/json");
+
+      const idPelanggan = document.querySelector("#exampleInputIDPelanggan1");
+      const nominal = document.querySelector("#exampleInputNominal1");
+      const pin = document.querySelector("#exampleInputPin1");
+
+      const buttonSubmit = document.querySelector("#btn-submit");
+      const hasil = document.querySelector("#hasil");
+
+      buttonSubmit.addEventListener("click", (e) => {
+        e.preventDefault(); // mencegah refresh
+
+        var raw = JSON.stringify({
+          idPelanggan: idPelanggan.value,
+          nominal: nominal.value,
+          pin: pin.value,
+        });
+
+        var requestOptions = {
+          method: "POST",
+          headers: myHeaders,
+          body: raw,
+          redirect: "follow",
+        };
+
+        fetch(
+          "https://harpay-api.herokuapp.com/transaksi/pembelianTokenListrik",
+          requestOptions
+        )
+          .then((response) => response.json())
+          .then((result) => {
+            // masukin di html
+            hasil.innerHTML = result.message;
+          })
+          .catch((error) => console.log("error", error));
+      });
+    </script>
   </body>
 </html>

@@ -1,0 +1,67 @@
+/* general styling */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* navbar styling */
+  nav a.navbar-brand img {
+    width: 30px;
+    height: 30px;
+    margin-top: -5px;
+  }
+  
+  /* hero */
+  section#hero {
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: -30px;
+  }
+  
+  /*logo */
+  img {
+    width: 120px;
+    height: 120px;
+  }
+
+  /* card dash and no dash */
+  section.card-dash {
+    background: rgba(0, 0, 0, 0.2);
+  }
+  
+  section.card-dash .container,
+  section.card-no-dash .container {
+    display: flex;
+    padding: 40px;
+  }
+  
+  section.card-dash .left-side {
+    flex-basis: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  section.card-dash .right-side {
+    flex-basis: 60%;
+  }
+  
+  section.card-no-dash .left-side {
+    flex-basis: 60%;
+  }
+  
+  section.card-no-dash .right-side {
+    flex-basis: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* footer */
+  footer {
+    margin-top: 50px;
+  }
+  

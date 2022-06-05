@@ -11,7 +11,7 @@ resultContent.setAttribute("role", "alert");
 
 const removeClass = (el) => {
   el.classList.value = "";
-}
+};
 
 submitBtn.addEventListener("click", (e) => {
   e.preventDefault();
@@ -41,7 +41,9 @@ submitBtn.addEventListener("click", (e) => {
         resultContent.classList.add("alert-success");
         resultContent.innerText = result.message;
 
-        // to do redirect
+        localStorage.setItem("eclogin", JSON.stringify({ jwt: result.token }));
+
+        window.location.href = "../dashboard/dashboard.html";
       }
 
       resultEl.append(resultContent);

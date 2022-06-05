@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -13,92 +14,75 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <link rel="stylesheet" href="css/history.css" />
+    <link rel="stylesheet" href="../../css/dashboard/dashboard.css" />
   </head>
 
   <body>
     <header>
       <nav class="navbar navbar-dark bg-primary">
         <div class="container">
-          <a class="navbar-brand" href="index.html">
-            <img src="./images/main_logo.png" alt="Logo" />
+          <a class="navbar-brand" href="dashboard.html">
+            <img src="../../images/main_logo.png" class="img-fluid" alt="Logo" />
           </a>
-          <div>
-            <a href="history.html" class="text-white text-decoration-none me-3  ">History Transaksi <i class="fa-solid fa-clock-rotate-left"></i></a>
-            <a href="#" class="text-white text-decoration-none"> Akun <i class="fa-solid fa-address-card"></i></a>
+          <div class="header-content">
+            <a href="history.html" class="text-white text-decoration-none me-3">History Transaksi <i class="fa-solid fa-clock-rotate-left"></i></a>
           </div>
         </div>
       </nav>
     </header>
 
-    <main>
-    <section id="hero">
-        <div class="container">
-          <h1 class="text-center"><i class="fa-solid fa-clock-rotate-left"></i> Data Transaksi</h1>
+    <main class="p-3">
+      <div class="container">
+        <div class="card-dashboard">
+          <a href="top_up.html">
+            <img src="../../images/TopUp.png" alt="Top Up" />
+            <h3>Top Up Saldo</h3>
+          </a>
         </div>
-    </section>
-    <section>
-        <div class="container-table">
-            <table class="table-centered">
-                <thead>
-                    <tr>
-                        <th>No.</th>
-                        <th>Transaksi</th>
-                        <th>Waktu</th>
-                        <th>Nominal</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </section>
 
+        <div class="card-dashboard">
+          <a href="beli_barang.html">
+            <i class="fa-solid fa-bag-shopping"></i>
+            <h3>Beli Barang</h3>
+          </a>
+        </div>
+
+        <div class="card-dashboard">
+          <a href="bayar_listrik.html">
+            <img src="../../images/PembayaranListrik.png" alt="Pembayaran Listrik" />
+            <h3>Bayar Listrik</h3>
+          </a>
+        </div>
+
+        <div class="card-dashboard">
+          <a href="">
+            <img src="../../images/TokenListrik.png" alt="Pembelian Token" />
+            <h3>Beli Token</h3>
+          </a>
+        </div>
+
+        <div class="card-dashboard">
+          <a href="transfer_saldo.html">
+            <img src="../../images/transfer.png" alt="Tranfer Saldo" />
+            <h3>Transfer Saldo</h3>
+          </a>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
     <footer class="bg-light text-center">
+      <!-- Grid container -->
       <div class="container p-3">
+        <!-- Section: Social media -->
         <section class="mb-3">
-          <!-- Facebook -->
           <a class="btn btn-primary btn-floating m-1" style="background-color: #3b5998" href="#!" role="button"><i class="fab fa-facebook-f"></i></a>
-
-          <!-- Twitter -->
           <a class="btn btn-primary btn-floating m-1" style="background-color: #55acee" href="#!" role="button"><i class="fab fa-twitter"></i></a>
-
-          <!-- Google -->
           <a class="btn btn-primary btn-floating m-1" style="background-color: #dd4b39" href="#!" role="button"><i class="fab fa-google"></i></a>
-
-          <!-- Instagram -->
           <a class="btn btn-primary btn-floating m-1" style="background-color: #ac2bac" href="#!" role="button"><i class="fab fa-instagram"></i></a>
-
-          <!-- Linkedin -->
           <a class="btn btn-primary btn-floating m-1" style="background-color: #0082ca" href="#!" role="button"><i class="fab fa-linkedin-in"></i></a>
-          <!-- Github -->
           <a class="btn btn-primary btn-floating m-1" style="background-color: #333333" href="#!" role="button"><i class="fab fa-github"></i></a>
         </section>
-        <!-- Section: Social media -->
 
         <!-- Section: Text -->
         <section class="mb-3">
@@ -107,16 +91,13 @@
             dalam melakukan evaluasi pengeluaran setiap bulannya.
           </p>
         </section>
-        <!-- Section: Text -->
       </div>
-      <!-- Grid container -->
 
       <!-- Copyright -->
       <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
         © 2020 Copyright:
-        <a class="text-dark" href="index.html">HAR-Pay</a>
+        <a class="text-dark" href="../home/home.html">HAR-Pay</a>
       </div>
-      <!-- Copyright -->
     </footer>
     <!-- Footer -->
 

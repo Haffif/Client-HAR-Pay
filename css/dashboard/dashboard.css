@@ -1,0 +1,51 @@
+/* general styling */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* navbar styling */
+nav a.navbar-brand img {
+  width: 30px;
+  height: 30px;
+  margin-top: -5px;
+}
+
+main .container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.card-dashboard {
+  background-color: rgb(190, 190, 190);
+  margin: 10px;
+  width: 400px;
+  height: 400px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 10px;
+}
+
+.card-dashboard a {
+  text-decoration: none;
+  color: white;
+}
+
+.card-dashboard img {
+  width: 200px;
+  height: 200px;
+}
+
+.card-dashboard i {
+  font-size: 80px;
+}
+
+.card-dashboard img,
+.card-dashboard i {
+  margin-bottom: 20px;
+}

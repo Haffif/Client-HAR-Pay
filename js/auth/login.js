@@ -43,7 +43,9 @@ submitBtn.addEventListener("click", (e) => {
 
         localStorage.setItem("eclogin", JSON.stringify({ jwt: result.token }));
 
-        window.location.href = "../dashboard/dashboard.html";
+        setTimeout(() => {
+          window.location.href = "../dashboard/dashboard.html";
+        }, 1000);
       }
 
       resultEl.append(resultContent);

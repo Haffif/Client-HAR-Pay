@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Beli Barang</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="../../css/dashboard/beli_barang.css" />
+  </head>
+
+  <body>
+    <header>
+      <nav class="navbar navbar-dark bg-primary">
+        <div class="container">
+          <a class="navbar-brand" href="dashboard.html">
+            <img src="../../images/main_logo.png" class="img-fluid" alt="Logo" />
+          </a>
+          <div class="header-content">
+            <a href="history.html" class="text-white text-decoration-none me-3">History Transaksi <i class="fa-solid fa-clock-rotate-left"></i></a>
+            <a href="../home/home.html" class="text-white text-decoration-none me-3">Logout <i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="p-3">
+      <div class="container">
+        <h3 class="mb-3">Beli Barang Pada Har-Pay E-commerce!</h3>
+        <p id="result"></p>
+
+        <form>
+          <!-- Pilih barang -->
+          <p>Pilih barang yang ingin di beli:</p>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="pilihBarang" value="lampu" id="barang1" />
+            <label class="form-check-label" for="barang1">
+              <img src="../../images/beli_barang/lampu.jpg" alt="Lampu" />
+              <div>
+                <h2>Lampu</h2>
+                <p>Rp. 10.000</p>
+              </div>
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="pilihBarang" value="colokan" id="barang2" />
+            <label class="form-check-label" for="barang2">
+              <img src="../../images/beli_barang/colokan.jpg" alt="Colokan" />
+              <div>
+                <h2>Colokan</h2>
+                <p>Rp. 20.000</p>
+              </div>
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="pilihBarang" value="genset" id="barang3" />
+            <label class="form-check-label" for="barang3">
+              <img src="../../images/beli_barang/genset.jpg" alt="Genset" />
+              <div>
+                <h2>Genset</h2>
+                <p>Rp. 500.000</p>
+              </div>
+            </label>
+          </div>
+          <div class="form-check mb-4">
+            <input class="form-check-input" type="radio" name="pilihBarang" value="powerbank" id="barang4" />
+            <label class="form-check-label" for="barang4">
+              <img src="../../images/beli_barang/powerbank.jpg" alt="Power Bank" />
+              <div>
+                <h2>Power Bank</h2>
+                <p>Rp. 100.000</p>
+              </div>
+            </label>
+          </div>
+
+          <!-- Pilih metode pembayaran -->
+          <p>Pilih metode pembayaran:</p>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="metodeBayar" value="harpay" id="bayar1" />
+            <label class="form-check-label" for="bayar1">HarPay</label>
+          </div>
+          <div class="form-check mb-4">
+            <input class="form-check-input" type="radio" name="metodeBayar" value="apilain" id="bayar2" />
+            <label class="form-check-label" for="bayar2">E-money lain</label>
+          </div>
+
+          <!-- Pin -->
+          <div class="mb-4">
+            <label for="pin" class="form-label">PIN Transaksi (khusus pengguna harpay)</label>
+            <input type="number" class="form-control" id="pin" />
+          </div>
+
+          <!-- Button bayar -->
+          <button class="btn btn-primary" id="submit">Beli</button>
+        </form>
+      </div>
+    </main>
+
+    <script src="../../js/dashboard/bayar/barang.js"></script>
+  </body>
+</html>

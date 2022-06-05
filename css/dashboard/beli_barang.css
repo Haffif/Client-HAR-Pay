@@ -1,0 +1,31 @@
+/* general styling */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* navbar styling */
+nav a.navbar-brand img {
+  width: 30px;
+  height: 30px;
+  margin-top: -5px;
+}
+
+.form-check {
+  background-color: rgb(230, 230, 230);
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.form-check label {
+  display: flex;
+  cursor: pointer;
+}
+
+.form-check label img {
+  width: 150px;
+  height: 150px;
+  margin-right: 15px;
+}

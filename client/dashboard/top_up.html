@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -15,6 +16,7 @@
     />
     <link rel="stylesheet" href="../../css/dashboard/topup.css" />
   </head>
+
   <body>
     <header>
       <nav class="navbar navbar-dark bg-primary">
@@ -32,18 +34,12 @@
 
     <main class="p-3">
       <div class="container">
-        <h3>Top Up untuk e-money apa?</h3>
-        <a href="topup/harpay.html" class="btn btn-primary">Har-Pay</a>
-        <a href="topup/api_lain.html" class="btn btn-primary">E-money Orang Lain</a>
+        <h3 class="mb-3">Top Up untuk e-money apa?</h3>
+        <a href="topup/harpay.html" class="btn btn-primary me-2">Har-Pay</a>
+        <a href="topup/api_lain.html" class="btn btn-primary me-2">E-money Orang Lain</a>
       </div>
-
-      <script>
-        const eclogin = JSON.parse(localStorage.getItem("eclogin"));
-
-        if (!eclogin) {
-          window.location.href = "../home/home.html";
-        }
-      </script>
     </main>
+
+    <script src="../../js/dashboard/topup.js"></script>
   </body>
 </html>

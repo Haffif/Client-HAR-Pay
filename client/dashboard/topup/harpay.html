@@ -34,6 +34,9 @@
     <main class="p-3">
       <div class="container">
         <h3 class="mb-3">Top Up Harpay</h3>
+        <p class="mb-2"><h5 class="alert alert-warning" role="alert"><i class="fa-solid fa-money-bill"></i> Saldo e-money HarPay kamu: Rp. <span id="saldo"></span>,-</h5></p>
+        <p id="result"></p>
+
         <form>
           <div class="mb-3">
             <label for="jumlahTopup" class="form-label">Jumlah Top Up</label>
@@ -45,13 +48,5 @@
     </main>
 
     <script src="../../../js/dashboard/topup/harpay.js"></script>
-
-    <script>
-      const eclogin = JSON.parse(localStorage.getItem("eclogin"));
-
-      if (!eclogin) {
-        window.location.href = "../../home/home.html";
-      }
-    </script>
   </body>
 </html>

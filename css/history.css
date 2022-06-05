@@ -22,10 +22,17 @@
   }
 
   /* table */
+
+  .container-table{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   table {
     flex-direction: column;
     justify-content: center;
-    margin-top: -30px;
+    margin-top: -70px;
   }
 
   table th {

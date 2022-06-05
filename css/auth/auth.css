@@ -1,0 +1,13 @@
+/* general styling */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* navbar styling */
+nav a.navbar-brand img {
+  width: 30px;
+  height: 30px;
+  margin-top: -5px;
+}

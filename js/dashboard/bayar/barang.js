@@ -92,7 +92,7 @@ submitBtn.addEventListener("click", (e) => {
       if (result.message && result.message === "Transaction successfully") {
         resultContent.classList.add("alert");
         resultContent.classList.add("alert-success");
-        resultContent.innerText = result.message;
+        resultContent.innerText = `${result.message}. Kamu membeli ${selectedBarang} dengan harga ${hargaBayar} menggunakan ${selectedMetodeBayar}.`;
       } else if (result.message) {
         resultContent.classList.add("alert");
         resultContent.classList.add("alert-danger");

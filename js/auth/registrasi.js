@@ -48,6 +48,10 @@ buttonSubmit.addEventListener("click", (e) => {
         resultContent.classList.add("alert");
         resultContent.classList.add("alert-success");
         resultContent.innerText = result.message;
+
+        setTimeout(() => {
+          window.location.href = "./login.html";
+        }, 1000);
       } else {
         resultContent.classList.add("alert");
         resultContent.classList.add("alert-danger");
@@ -58,10 +62,6 @@ buttonSubmit.addEventListener("click", (e) => {
 
       document.body.scrollTop = 0; // safari
       document.documentElement.scrollTop = 0; // chrome
-
-      setTimeout(() => {
-        window.location.href = "./login.html";
-      }, 1000);
     })
     .catch((error) => console.log("error", error));
 });

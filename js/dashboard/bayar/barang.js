@@ -17,7 +17,7 @@ const daftarBarang = [
   },
   {
     nama: "colokan",
-    harga: 10000,
+    harga: 20000,
   },
   {
     nama: "genset",

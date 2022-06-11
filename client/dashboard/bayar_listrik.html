@@ -5,12 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bayar Listrik</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-      crossorigin="anonymous"
-    />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
@@ -29,14 +24,8 @@
             <img src="../../images/main_logo.png" alt="Logo" />
           </a>
           <div>
-            <a href="history.html" class="text-white text-decoration-none me-3"
-              >History Transaksi <i class="fa-solid fa-clock-rotate-left"></i
-            ></a>
-            <a
-              href="../home/home.html"
-              class="text-white text-decoration-none me-3"
-              >Logout <i class="fa-solid fa-arrow-right-from-bracket"></i
-            ></a>
+            <a href="history.html" class="text-white text-decoration-none me-3">History Transaksi <i class="fa-solid fa-clock-rotate-left"></i></a>
+            <a href="../home/home.html" class="text-white text-decoration-none me-3">Logout <i class="fa-solid fa-arrow-right-from-bracket"></i></a>
           </div>
         </div>
       </nav>
@@ -44,10 +33,11 @@
 
     <main class="p-3">
       <div class="container">
-        <h2 class="mb-3">Pembayaran Listrik Rumah (khusus e-money HarPay)</h2>
-        <hr>
+        <h2 class="mb-3">Pembayaran Listrik Rumah (e-money HarPay)</h2>
+        <h5 class="alert alert-warning" role="alert"><i class="fa-solid fa-money-bill"></i> Saldo e-money HarPay kamu: Rp. <span id="saldo"></span>,-</h5>
+        <hr />
 
-        <h3 class="mb-3">Cek status pembayaran listrik berdasarkan ID pelanggan</h3>
+        <h3 class="mb-3">Cek status pembayaran</h3>
         <div id="cekStatus"></div>
         <form>
           <div class="mb-3">
@@ -56,9 +46,9 @@
           </div>
           <button class="btn btn-primary" id="cekBtn">Cek Pembayaran</button>
         </form>
-        <hr>
+        <hr />
 
-        <h3 class="mb-3">Lakukan pembayaran listrik</h3>
+        <h3 class="mb-3">Pembayaran listrik</h3>
         <div id="bayarStatus"></div>
         <form>
           <div class="mb-3">
@@ -74,11 +64,7 @@
       </div>
     </main>
 
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
     <script src="../../js/dashboard/bayar/listrik.js"></script>
   </body>

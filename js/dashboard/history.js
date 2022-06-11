@@ -27,12 +27,14 @@ fetch("https://harpay-api.herokuapp.com/transaksi/cekHistory", requestOptions)
       const trEl = document.createElement("tr");
 
       const noTd = document.createElement("td");
+      const jenisTd = document.createElement("td");
       const namaTd = document.createElement("td");
       const jenisTransaksiTd = document.createElement("td");
       const nominalPengeluaranTd = document.createElement("td");
       const jumlahTopupTd = document.createElement("td");
 
       noTd.innerText = index;
+      jenisTd.innerText = "HarPay";
       namaTd.innerText = history.userNama;
       jenisTransaksiTd.innerText = history.jenisTransaksi;
       nominalPengeluaranTd.innerText = history.nominalPengeluaran;
@@ -40,8 +42,10 @@ fetch("https://harpay-api.herokuapp.com/transaksi/cekHistory", requestOptions)
 
       index++;
 
-      trEl.append(noTd, namaTd, jenisTransaksiTd, nominalPengeluaranTd, jumlahTopupTd);
+      trEl.append(noTd, jenisTd, namaTd, jenisTransaksiTd, nominalPengeluaranTd, jumlahTopupTd);
       bodyTableHistory.append(trEl);
     });
+
+    //  to do for another e-money
   })
   .catch((error) => console.log("error", error));

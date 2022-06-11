@@ -1,3 +1,5 @@
+localStorage.removeItem("eclogin");
+
 const email = document.getElementById("email");
 const password = document.getElementById("password");
 const submitBtn = document.getElementById("submit");

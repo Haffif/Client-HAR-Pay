@@ -1,3 +1,5 @@
+localStorage.removeItem("eclogin");
+
 const nama = document.getElementById("nama");
 const email = document.getElementById("email");
 const noTelp = document.getElementById("noTelp");
@@ -65,4 +67,3 @@ buttonSubmit.addEventListener("click", (e) => {
     })
     .catch((error) => console.log("error", error));
 });
- 

@@ -120,7 +120,7 @@ bayarBtn.addEventListener("click", (e) => {
         resultContentBayar.innerText = result.message;
       } else if (result.message) {
         resultContentBayar.classList.add("alert");
-        resultContentBayar.classList.add("alert-warning");
+        resultContentBayar.classList.add("alert-danger");
         resultContentBayar.innerText = result.message;
       } else {
         resultContentBayar.classList.add("alert");

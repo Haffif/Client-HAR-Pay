@@ -1,4 +1,6 @@
 localStorage.removeItem("eclogin");
+localStorage.removeItem("met4kantin");
+localStorage.removeItem("edoeit");
 
 const nama = document.getElementById("nama");
 const email = document.getElementById("email");
@@ -21,6 +23,10 @@ const removeClass = (el) => {
   el.classList.value = "";
 };
 
+const harpayRegistUrl = "https://harpay-api.herokuapp.com/auth/registrasi";
+const met4kantinRegistUrl = "https://met4kantin.herokuapp.com/api/profile";
+const e_doeitRegistUrl = "https://e-doeit.herokuapp.com/api/registrasi";
+
 buttonSubmit.addEventListener("click", (e) => {
   e.preventDefault();
 
@@ -41,23 +47,54 @@ buttonSubmit.addEventListener("click", (e) => {
     redirect: "follow",
   };
 
-  fetch("https://harpay-api.herokuapp.com/auth/registrasi", requestOptions)
+  fetch(harpayRegistUrl, requestOptions)
     .then((response) => response.json())
     .then((result) => {
+      // setup remove class result content
       removeClass(resultContent);
 
-      if (result.message && result.message === "User created") {
-        resultContent.classList.add("alert");
-        resultContent.classList.add("alert-success");
-        resultContent.innerText = result.message;
+      if (result.message === "User created") {
+        // setup new body for other requests
+        requestOptions.body = JSON.stringify({
+          name: nama.value,
+          email: email.value,
+          pass: password.value,
+        });
 
-        setTimeout(() => {
-          window.location.href = "./login.html";
-        }, 1000);
+        // catch met4kantin
+        fetch(met4kantinRegistUrl, requestOptions)
+          .then((response) => response.json())
+          .then((result) => {
+            if (result.status === 200) {
+              // fetch(e_doeitRegistUrl, requestOptions)
+              //   .then((response) => response.json())
+              //   .then((result) => {
+              //     if (result.status === 200) {
+              resultContent.classList.add("alert");
+              resultContent.classList.add("alert-success");
+              resultContent.innerText = "Buat akun untuk harpay, met4kantin, e_doeit berhasil!";
+
+              setTimeout(() => {
+                window.location.href = "./login.html";
+              }, 1000);
+              //   } else {
+              //     resultContent.classList.add("alert");
+              //     resultContent.classList.add("alert-danger");
+              //     resultContent.innerText = "Failed to create an account for e_doeit";
+              //   }
+              // })
+              // .catch((err) => console.log(err));
+            } else {
+              resultContent.classList.add("alert");
+              resultContent.classList.add("alert-danger");
+              resultContent.innerText = "Failed to create an account for met4kantin";
+            }
+          })
+          .catch((error) => console.log(error));
       } else {
         resultContent.classList.add("alert");
         resultContent.classList.add("alert-danger");
-        resultContent.innerText = "Failed to create an account";
+        resultContent.innerText = "Failed to create an account for harpay";
       }
 
       resultEl.append(resultContent);

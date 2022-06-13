@@ -13,6 +13,11 @@ if (!edoeit) {
   window.location.href = "../home/home.html";
 }
 
+const peepay = JSON.parse(localStorage.getItem("peepay"));
+if (!peepay) {
+  window.location.href = "../home/home.html";
+}
+
 var myHeaders = new Headers();
 myHeaders.append("Authorization", `Bearer ${eclogin.jwt}`);
 
@@ -23,6 +28,7 @@ var requestOptions = {
 };
 
 const bodyTableHistory = document.getElementById("body-table-history");
+const bodyTableHistoryMet4kantin = document.getElementById("body-table-history-met4kantin");
 const bodyTableHistoryEdoeit = document.getElementById("body-table-history-edoeit");
 
 let index = 1;
@@ -78,6 +84,42 @@ fetch("https://harpay-api.herokuapp.com/transaksi/cekHistory", requestOptions)
           trEl.append(noTd, keteranganTd, jumlahTd);
           bodyTableHistoryEdoeit.append(trEl);
         });
+
+        // met4kantin
+
+        index = 1;
+
+        // setup new headers
+        var myHeadersMet4kantin = new Headers();
+        myHeadersMet4kantin.append("Authorization", `Bearer ${met4kantin.jwt}`);
+        requestOptions.headers = myHeadersMet4kantin;
+
+        fetch("https://met4kantin.herokuapp.com/api/history/transfer/out", requestOptions)
+          .then((response) => response.json())
+          .then((result) => {
+            // console.log(result);
+
+            result.data.forEach((item) => {
+              // creating element
+              const trEl = document.createElement("tr");
+
+              const noTd = document.createElement("td");
+              const tujuanTd = document.createElement("td");
+              const jumlahTd = document.createElement("td");
+              const pesanTd = document.createElement("td");
+
+              noTd.innerText = index;
+              tujuanTd.innerText = item.tujuan;
+              jumlahTd.innerText = item.jumlah;
+              pesanTd.innerText = item.pesan;
+
+              index++;
+
+              trEl.append(noTd, tujuanTd, jumlahTd, pesanTd);
+              bodyTableHistoryMet4kantin.append(trEl);
+            });
+          })
+          .catch((err) => console.log(err));
       })
       .catch((error) => console.log("error", error));
   })

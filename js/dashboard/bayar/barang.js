@@ -13,6 +13,11 @@ if (!edoeit) {
   window.location.href = "../home/home.html";
 }
 
+const peepay = JSON.parse(localStorage.getItem("peepay"));
+if (!peepay) {
+  window.location.href = "../home/home.html";
+}
+
 // setup request
 var myHeaders = new Headers();
 myHeaders.append("Content-Type", "application/json");
@@ -198,5 +203,58 @@ submitBtn.addEventListener("click", (e) => {
         document.documentElement.scrollTop = 0;
       })
       .catch((error) => console.log("error", error));
+  } else if (selectedMetodeBayar === "peepay") {
+    myHeaders.append("Authorization", `Bearer ${peepay.jwt}`);
+
+    var raw = JSON.stringify({
+      jumlah: hargaBayar,
+      keterangan: `Beli barang ${selectedBarang} dengan harga ${hargaBayar} di e-commerce harpay`,
+    });
+
+    var requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow",
+    };
+
+    function decodeJWT(token){
+      var base64Url = token.split('.')[1];
+      var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+      var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+          return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+      }).join(''));
+      jsonPayload = JSON.parse(jsonPayload);
+      return jsonPayload
+    }
+
+    console.log(decodeJWT(peepay.jwt));
+
+    // to do next beli barang
+
+    // fetch("https://peepaywallet-v2.herokuapp.com/", requestOptions)
+    //   .then((response) => response.json())
+    //   .then((result) => {
+    //     removeClass(resultContent);
+
+    //     if (result.message === "Berhasil bayar") {
+    //       resultContent.classList.add("alert");
+    //       resultContent.classList.add("alert-success");
+    //       resultContent.innerText = `${result.message}. Kamu membeli ${selectedBarang} dengan harga ${hargaBayar} menggunakan ${selectedMetodeBayar}.`;
+    //     } else if (result.message) {
+    //       resultContent.classList.add("alert");
+    //       resultContent.classList.add("alert-danger");
+    //       resultContent.innerText = result.message;
+    //     } else {
+    //       resultContent.classList.add("alert");
+    //       resultContent.classList.add("alert-danger");
+    //       resultContent.innerText = "Transaction failed";
+    //     }
+
+    //     resultEl.append(resultContent);
+    //     document.body.scrollTop = 0;
+    //     document.documentElement.scrollTop = 0;
+    //   })
+    //   .catch((error) => console.log("error", error));
   }
 });

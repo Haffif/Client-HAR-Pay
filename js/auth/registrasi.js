@@ -26,6 +26,7 @@ const removeClass = (el) => {
 const harpayRegistUrl = "https://harpay-api.herokuapp.com/auth/registrasi";
 const met4kantinRegistUrl = "https://met4kantin.herokuapp.com/api/profile";
 const e_doeitRegistUrl = "https://e-doeit.herokuapp.com/api/registrasi";
+const peepayRegistUrl = "https://peepaywallet-v2.herokuapp.com/api/profile";
 
 buttonSubmit.addEventListener("click", (e) => {
   e.preventDefault();
@@ -66,17 +67,39 @@ buttonSubmit.addEventListener("click", (e) => {
           .then((response) => response.json())
           .then((result) => {
             if (result.message === "Pendaftaran berhasil") {
+              // go req again bcs the params still same
               fetch(e_doeitRegistUrl, requestOptions)
                 .then((response) => response.json())
                 .then((result) => {
                   if (result.message === "Pendaftaran Berhasil") {
-                    resultContent.classList.add("alert");
-                    resultContent.classList.add("alert-success");
-                    resultContent.innerText = "Buat akun untuk harpay, met4kantin, e-doeit berhasil!";
+                    // setup new body for peepay
+                    requestOptions.body = JSON.stringify({
+                      username: nama.value,
+                      email: email.value,
+                      password: password.value
+                    });
 
-                    setTimeout(() => {
-                      window.location.href = "./login.html";
-                    }, 1000);
+                    fetch(peepayRegistUrl, requestOptions)
+                      .then(response => response.json())
+                      .then(result => {
+                        if (result.message === "Register successfully !!") {
+                          resultContent.classList.add("alert");
+                          resultContent.classList.add("alert-success");
+                          resultContent.innerText = "Buat akun untuk harpay, met4kantin, e-doeit, peepay berhasil!";
+
+                          setTimeout(() => {
+                            window.location.href = "./login.html";
+                          }, 1000);
+                        } else {
+                          resultContent.classList.add("alert");
+                          resultContent.classList.add("alert-danger");
+                          resultContent.innerText = "Failed to create an account for peepay";
+                        }
+                      })
+                      .catch(err => {
+                        console.log(err);
+                        alert("Terjadi error pada server peepay, silahkan cek console");
+                      })
                   } else {
                     resultContent.classList.add("alert");
                     resultContent.classList.add("alert-danger");

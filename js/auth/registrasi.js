@@ -1,6 +1,7 @@
 localStorage.removeItem("eclogin");
 localStorage.removeItem("met4kantin");
 localStorage.removeItem("edoeit");
+localStorage.removeItem("peepay");
 
 const nama = document.getElementById("nama");
 const email = document.getElementById("email");

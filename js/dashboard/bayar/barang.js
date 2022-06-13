@@ -206,9 +206,27 @@ submitBtn.addEventListener("click", (e) => {
   } else if (selectedMetodeBayar === "peepay") {
     myHeaders.append("Authorization", `Bearer ${peepay.jwt}`);
 
+    function decodeJWT(token) {
+      var base64Url = token.split(".")[1];
+      var base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+      var jsonPayload = decodeURIComponent(
+        atob(base64)
+          .split("")
+          .map(function (c) {
+            return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+          })
+          .join("")
+      );
+      jsonPayload = JSON.parse(jsonPayload);
+      return jsonPayload;
+    }
+
+    const decoded = decodeJWT(peepay.jwt);
+    const userEmail = decoded.userEmail;
+
     var raw = JSON.stringify({
-      jumlah: hargaBayar,
-      keterangan: `Beli barang ${selectedBarang} dengan harga ${hargaBayar} di e-commerce harpay`,
+      email: userEmail,
+      harga: hargaBayar,
     });
 
     var requestOptions = {
@@ -218,43 +236,27 @@ submitBtn.addEventListener("click", (e) => {
       redirect: "follow",
     };
 
-    function decodeJWT(token){
-      var base64Url = token.split('.')[1];
-      var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-      var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
-          return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-      }).join(''));
-      jsonPayload = JSON.parse(jsonPayload);
-      return jsonPayload
-    }
+    // console.log(userEmail);
 
-    console.log(decodeJWT(peepay.jwt));
+    fetch("https://peepaywallet-v2.herokuapp.com/api/pembelian", requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        removeClass(resultContent);
 
-    // to do next beli barang
+        if (result.message === "Payment success !") {
+          resultContent.classList.add("alert");
+          resultContent.classList.add("alert-success");
+          resultContent.innerText = `${result.message}. Kamu membeli ${selectedBarang} dengan harga ${hargaBayar} menggunakan ${selectedMetodeBayar}.`;
+        } else {
+          resultContent.classList.add("alert");
+          resultContent.classList.add("alert-danger");
+          resultContent.innerText = "Transaction failed";
+        }
 
-    // fetch("https://peepaywallet-v2.herokuapp.com/", requestOptions)
-    //   .then((response) => response.json())
-    //   .then((result) => {
-    //     removeClass(resultContent);
-
-    //     if (result.message === "Berhasil bayar") {
-    //       resultContent.classList.add("alert");
-    //       resultContent.classList.add("alert-success");
-    //       resultContent.innerText = `${result.message}. Kamu membeli ${selectedBarang} dengan harga ${hargaBayar} menggunakan ${selectedMetodeBayar}.`;
-    //     } else if (result.message) {
-    //       resultContent.classList.add("alert");
-    //       resultContent.classList.add("alert-danger");
-    //       resultContent.innerText = result.message;
-    //     } else {
-    //       resultContent.classList.add("alert");
-    //       resultContent.classList.add("alert-danger");
-    //       resultContent.innerText = "Transaction failed";
-    //     }
-
-    //     resultEl.append(resultContent);
-    //     document.body.scrollTop = 0;
-    //     document.documentElement.scrollTop = 0;
-    //   })
-    //   .catch((error) => console.log("error", error));
+        resultEl.append(resultContent);
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+      })
+      .catch((error) => console.log("error", error));
   }
 });

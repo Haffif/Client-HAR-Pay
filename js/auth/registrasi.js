@@ -65,32 +65,38 @@ buttonSubmit.addEventListener("click", (e) => {
         fetch(met4kantinRegistUrl, requestOptions)
           .then((response) => response.json())
           .then((result) => {
-            if (result.status === 200) {
-              // fetch(e_doeitRegistUrl, requestOptions)
-              //   .then((response) => response.json())
-              //   .then((result) => {
-              //     if (result.status === 200) {
-              resultContent.classList.add("alert");
-              resultContent.classList.add("alert-success");
-              resultContent.innerText = "Buat akun untuk harpay, met4kantin, e_doeit berhasil!";
+            if (result.message === "Pendaftaran berhasil") {
+              fetch(e_doeitRegistUrl, requestOptions)
+                .then((response) => response.json())
+                .then((result) => {
+                  if (result.message === "Pendaftaran Berhasil") {
+                    resultContent.classList.add("alert");
+                    resultContent.classList.add("alert-success");
+                    resultContent.innerText = "Buat akun untuk harpay, met4kantin, e-doeit berhasil!";
 
-              setTimeout(() => {
-                window.location.href = "./login.html";
-              }, 1000);
-              //   } else {
-              //     resultContent.classList.add("alert");
-              //     resultContent.classList.add("alert-danger");
-              //     resultContent.innerText = "Failed to create an account for e_doeit";
-              //   }
-              // })
-              // .catch((err) => console.log(err));
+                    setTimeout(() => {
+                      window.location.href = "./login.html";
+                    }, 1000);
+                  } else {
+                    resultContent.classList.add("alert");
+                    resultContent.classList.add("alert-danger");
+                    resultContent.innerText = "Failed to create an account for e_doeit";
+                  }
+                })
+                .catch((err) => {
+                  console.log(err);
+                  alert("Terjadi kesalahan pada server e-doeit, silahkan cek console");
+                });
             } else {
               resultContent.classList.add("alert");
               resultContent.classList.add("alert-danger");
               resultContent.innerText = "Failed to create an account for met4kantin";
             }
           })
-          .catch((error) => console.log(error));
+          .catch((error) => {
+            console.log(error);
+            alert("Terjadi kesalahan pada server met4kantin, silahkan cek console");
+          });
       } else {
         resultContent.classList.add("alert");
         resultContent.classList.add("alert-danger");
@@ -102,5 +108,8 @@ buttonSubmit.addEventListener("click", (e) => {
       document.body.scrollTop = 0; // safari
       document.documentElement.scrollTop = 0; // chrome
     })
-    .catch((error) => console.log("error", error));
+    .catch((error) => {
+      console.log("error", error);
+      alert("Terjadi kesalahan pada server harpay, silahkan cek console");
+    });
 });

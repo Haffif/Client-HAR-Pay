@@ -57,25 +57,48 @@ submitBtn.addEventListener("click", (e) => {
         fetch(met4kantinLoginUrl, requestOptions)
           .then((response) => response.json())
           .then((result) => {
-            if (result.status === 200) {
-              resultContent.classList.add("alert");
-              resultContent.classList.add("alert-success");
-              resultContent.innerText = "Berhasil login untuk harpay dan met4kantin";
+            if (result.jwt) {
+              localStorage.setItem("met4kantin", JSON.stringify({ jwt: result.jwt }));
 
-              localStorage.setItem("eclogin", JSON.stringify({ jwt: result.jwt }));
-              setTimeout(() => {
-                window.location.href = "../dashboard/dashboard.html";
-              }, 1000);
+              fetch(e_doeitLoginUrl, requestOptions)
+                .then((response) => response.json())
+                .then((result) => {
+                  if (result.token) {
+                    localStorage.setItem("edoeit", JSON.stringify({ jwt: result.token }));
+
+                    resultContent.classList.add("alert");
+                    resultContent.classList.add("alert-success");
+                    resultContent.innerText = "Berhasil login untuk harpay, met4kantin, e-doeit";
+
+                    setTimeout(() => {
+                      window.location.href = "../dashboard/dashboard.html";
+                    }, 1000);
+                  } else {
+                    resultContent.classList.add("alert");
+                    resultContent.classList.add("alert-danger");
+                    resultContent.innerText = "Gagal login untuk e-doeit";
+                  }
+                })
+                .catch((err) => {
+                  console.log(err);
+                  alert("Error login server e-doeit");
+                });
             } else {
               resultContent.classList.add("alert");
               resultContent.classList.add("alert-danger");
               resultContent.innerText = "Gagal login untuk met4kantin";
             }
           })
-          .catch((err) => console.log(err));
+          .catch((err) => {
+            console.log(err);
+            alert("Error login server met4kantin");
+          });
       }
 
       resultEl.append(resultContent);
     })
-    .catch((error) => console.log("error", error));
+    .catch((error) => {
+      console.log("error", error);
+      alert("Error login server harpay");
+    });
 });

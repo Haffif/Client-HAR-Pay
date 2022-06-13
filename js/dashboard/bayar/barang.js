@@ -1,12 +1,20 @@
 const eclogin = JSON.parse(localStorage.getItem("eclogin"));
-
 if (!eclogin) {
+  window.location.href = "../home/home.html";
+}
+
+const met4kantin = JSON.parse(localStorage.getItem("met4kantin"));
+if (!met4kantin) {
+  window.location.href = "../home/home.html";
+}
+
+const edoeit = JSON.parse(localStorage.getItem("edoeit"));
+if (!edoeit) {
   window.location.href = "../home/home.html";
 }
 
 // setup request
 var myHeaders = new Headers();
-myHeaders.append("Authorization", `Bearer ${eclogin.jwt}`);
 myHeaders.append("Content-Type", "application/json");
 
 // data barang
@@ -42,6 +50,7 @@ const submitBtn = document.getElementById("submit");
 // helper for request
 const resultContent = document.createElement("div");
 resultContent.setAttribute("role", "alert");
+
 const removeClass = (el) => {
   el.classList.value = "";
 };
@@ -71,41 +80,123 @@ submitBtn.addEventListener("click", (e) => {
     }
   }
 
-  // console.log(`Kamu akan membeli ${selectedBarang} dengan harga ${hargaBayar} menggunakan ${selectedMetodeBayar} dengan pin ${pinInput.value}`);
+  // console.log(`Kamu akan membeli ${selectedBarang} dengan harga ${hargaBayar} menggunakan ${selectedMetodeBayar}`);
 
-  var raw = JSON.stringify({
-    jumlahBayar: hargaBayar,
-    pin: parseInt(pinInput.value),
-  });
+  if (selectedMetodeBayar === "harpay") {
+    myHeaders.append("Authorization", `Bearer ${eclogin.jwt}`);
 
-  var requestOptions = {
-    method: "POST",
-    headers: myHeaders,
-    body: raw,
-    redirect: "follow",
-  };
+    var raw = JSON.stringify({
+      jumlahBayar: hargaBayar,
+      pin: parseInt(pinInput.value),
+    });
 
-  fetch("https://harpay-api.herokuapp.com/transaksi/bayar", requestOptions)
-    .then((response) => response.json())
-    .then((result) => {
-      removeClass(resultContent);
-      if (result.message && result.message === "Transaction successfully") {
-        resultContent.classList.add("alert");
-        resultContent.classList.add("alert-success");
-        resultContent.innerText = `${result.message}. Kamu membeli ${selectedBarang} dengan harga ${hargaBayar} menggunakan ${selectedMetodeBayar}.`;
-      } else if (result.message) {
-        resultContent.classList.add("alert");
-        resultContent.classList.add("alert-danger");
-        resultContent.innerText = result.message;
-      } else {
-        resultContent.classList.add("alert");
-        resultContent.classList.add("alert-danger");
-        resultContent.innerText = "Transaction failed";
-      }
+    var requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow",
+    };
 
-      resultEl.append(resultContent);
-      document.body.scrollTop = 0;
-      document.documentElement.scrollTop = 0;
-    })
-    .catch((error) => console.log("error", error));
+    fetch("https://harpay-api.herokuapp.com/transaksi/bayar", requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        removeClass(resultContent);
+
+        if (result.message && result.message === "Transaction successfully") {
+          resultContent.classList.add("alert");
+          resultContent.classList.add("alert-success");
+          resultContent.innerText = `${result.message}. Kamu membeli ${selectedBarang} dengan harga ${hargaBayar} menggunakan ${selectedMetodeBayar}.`;
+        } else if (result.message) {
+          resultContent.classList.add("alert");
+          resultContent.classList.add("alert-danger");
+          resultContent.innerText = result.message;
+        } else {
+          resultContent.classList.add("alert");
+          resultContent.classList.add("alert-danger");
+          resultContent.innerText = "Transaction failed";
+        }
+
+        resultEl.append(resultContent);
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+      })
+      .catch((error) => console.log("error", error));
+  } else if (selectedMetodeBayar === "met4kantin") {
+    myHeaders.append("Authorization", `Bearer ${met4kantin.jwt}`);
+
+    var raw = JSON.stringify({
+      jumlah: hargaBayar,
+    });
+
+    var requestOptions = {
+      method: "PUT",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow",
+    };
+
+    fetch("https://met4kantin.herokuapp.com/api/pay", requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        removeClass(resultContent);
+
+        if (result.message === "Pembayaran berhasil") {
+          resultContent.classList.add("alert");
+          resultContent.classList.add("alert-success");
+          resultContent.innerText = `${result.message}. Kamu membeli ${selectedBarang} dengan harga ${hargaBayar} menggunakan ${selectedMetodeBayar}.`;
+        } else if (result.message) {
+          resultContent.classList.add("alert");
+          resultContent.classList.add("alert-danger");
+          resultContent.innerText = result.message;
+        } else {
+          resultContent.classList.add("alert");
+          resultContent.classList.add("alert-danger");
+          resultContent.innerText = "Transaction failed";
+        }
+
+        resultEl.append(resultContent);
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+      })
+      .catch((error) => console.log("error", error));
+  } else if (selectedMetodeBayar === "edoeit") {
+    myHeaders.append("Authorization", `Bearer ${edoeit.jwt}`);
+
+    var raw = JSON.stringify({
+      jumlah: hargaBayar,
+      keterangan: `Beli barang ${selectedBarang} dengan harga ${hargaBayar} di e-commerce harpay`,
+    });
+
+    var requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow",
+    };
+
+    fetch("https://e-doeit.herokuapp.com/api/pay", requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        removeClass(resultContent);
+
+        if (result.message === "Berhasil bayar") {
+          resultContent.classList.add("alert");
+          resultContent.classList.add("alert-success");
+          resultContent.innerText = `${result.message}. Kamu membeli ${selectedBarang} dengan harga ${hargaBayar} menggunakan ${selectedMetodeBayar}.`;
+        } else if (result.message) {
+          resultContent.classList.add("alert");
+          resultContent.classList.add("alert-danger");
+          resultContent.innerText = result.message;
+        } else {
+          resultContent.classList.add("alert");
+          resultContent.classList.add("alert-danger");
+          resultContent.innerText = "Transaction failed";
+        }
+
+        resultEl.append(resultContent);
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+      })
+      .catch((error) => console.log("error", error));
+  }
 });

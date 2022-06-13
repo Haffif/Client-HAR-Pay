@@ -28,7 +28,7 @@ fetch("https://met4kantin.herokuapp.com/api/profile", requestOptions)
   .then((result) => {
     // console.log(result.data.uid);
     idUser = result.data.uid;
-    saldo.innerText = result.data.cash.split(".")[0];
+    saldo.innerText = result.data.cash;
   })
   .catch((error) => console.log("error", error));
 

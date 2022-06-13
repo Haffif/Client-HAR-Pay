@@ -50,7 +50,7 @@ fetch(harpayCekSaldoUrl, requestOptions)
     fetch(met4kantinCekSaldoUrl, requestOptions)
       .then((response) => response.json())
       .then((result) => {
-        saldoMet4kantin.innerText = result.data.cash.split(".")[0];
+        saldoMet4kantin.innerText = result.data.cash;
 
         // setup new headers
         var newHeadersEdoeit = new Headers();
@@ -68,11 +68,11 @@ fetch(harpayCekSaldoUrl, requestOptions)
             requestOptions.headers = newHeadersPeepay;
 
             fetch(peepayCekSaldoUrl, requestOptions)
-              .then(response => response.json())
-              .then(result => {
+              .then((response) => response.json())
+              .then((result) => {
                 saldoPeepay.innerText = result.balance;
               })
-              .catch(err => console.log(err))
+              .catch((err) => console.log(err));
           })
           .catch((err) => console.log(err));
       })

@@ -107,7 +107,7 @@ submitBtn.addEventListener("click", (e) => {
       .then((result) => {
         removeClass(resultContent);
 
-        if (result.message && result.message === "Transaction successfully") {
+        if (result.message === "Transaction successfully") {
           resultContent.classList.add("alert");
           resultContent.classList.add("alert-success");
           resultContent.innerText = `${result.message}. Kamu membeli ${selectedBarang} dengan harga ${hargaBayar} menggunakan ${selectedMetodeBayar}.`;

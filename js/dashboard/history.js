@@ -94,7 +94,7 @@ fetch("https://harpay-api.herokuapp.com/transaksi/cekHistory", requestOptions)
         myHeadersMet4kantin.append("Authorization", `Bearer ${met4kantin.jwt}`);
         requestOptions.headers = myHeadersMet4kantin;
 
-        fetch("https://met4kantin.herokuapp.com/api/history/transfer/out", requestOptions)
+        fetch("https://met4kantin.herokuapp.com/api/history/topup", requestOptions)
           .then((response) => response.json())
           .then((result) => {
             // console.log(result);
@@ -104,20 +104,84 @@ fetch("https://harpay-api.herokuapp.com/transaksi/cekHistory", requestOptions)
               const trEl = document.createElement("tr");
 
               const noTd = document.createElement("td");
-              const tujuanTd = document.createElement("td");
+              const jenisTd = document.createElement("td");
               const jumlahTd = document.createElement("td");
+              const tujuanTd = document.createElement("td");
               const pesanTd = document.createElement("td");
 
               noTd.innerText = index;
-              tujuanTd.innerText = item.tujuan;
+              jenisTd.innerText = "Topup";
               jumlahTd.innerText = item.jumlah;
-              pesanTd.innerText = item.pesan;
+              tujuanTd.innerText = "-";
+              pesanTd.innerText = "-";
 
               index++;
 
-              trEl.append(noTd, tujuanTd, jumlahTd, pesanTd);
+              trEl.append(noTd, jenisTd, jumlahTd, tujuanTd, pesanTd);
               bodyTableHistoryMet4kantin.append(trEl);
             });
+
+            // index = 1;
+
+            fetch("https://met4kantin.herokuapp.com/api/history/pays", requestOptions)
+              .then((response) => response.json())
+              .then((result) => {
+                // console.log(result);
+
+                result.data.forEach((item) => {
+                  // creating element
+                  const trEl = document.createElement("tr");
+
+                  const noTd = document.createElement("td");
+                  const jenisTd = document.createElement("td");
+                  const jumlahTd = document.createElement("td");
+                  const tujuanTd = document.createElement("td");
+                  const pesanTd = document.createElement("td");
+
+                  noTd.innerText = index;
+                  jenisTd.innerText = "Pembayaran";
+                  jumlahTd.innerText = item.jumlah;
+                  tujuanTd.innerText = "-";
+                  pesanTd.innerText = "-";
+
+                  index++;
+
+                  trEl.append(noTd, jenisTd, jumlahTd, tujuanTd, pesanTd);
+                  bodyTableHistoryMet4kantin.append(trEl);
+                });
+
+                // index = 1;
+
+                fetch("https://met4kantin.herokuapp.com/api/history/transfer/out", requestOptions)
+                  .then((response) => response.json())
+                  .then((result) => {
+                    // console.log(result);
+
+                    result.data.forEach((item) => {
+                      // creating element
+                      const trEl = document.createElement("tr");
+
+                      const noTd = document.createElement("td");
+                      const jenisTd = document.createElement("td");
+                      const jumlahTd = document.createElement("td");
+                      const tujuanTd = document.createElement("td");
+                      const pesanTd = document.createElement("td");
+
+                      noTd.innerText = index;
+                      jenisTd.innerText = "Transfer";
+                      jumlahTd.innerText = item.jumlah;
+                      tujuanTd.innerText = item.tujuan;
+                      pesanTd.innerText = item.pesan;
+
+                      index++;
+
+                      trEl.append(noTd, jenisTd, jumlahTd, tujuanTd, pesanTd);
+                      bodyTableHistoryMet4kantin.append(trEl);
+                    });
+                  })
+                  .catch((err) => console.log(err));
+              })
+              .catch((err) => console.log(err));
           })
           .catch((err) => console.log(err));
       })

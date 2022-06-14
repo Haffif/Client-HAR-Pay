@@ -243,6 +243,8 @@ submitBtn.addEventListener("click", (e) => {
       .then((result) => {
         removeClass(resultContent);
 
+        console.log(result)
+
         if (result.message === "Payment success !") {
           resultContent.classList.add("alert");
           resultContent.classList.add("alert-success");

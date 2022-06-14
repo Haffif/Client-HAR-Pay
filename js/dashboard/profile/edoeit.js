@@ -30,7 +30,7 @@ fetch("https://e-doeit.herokuapp.com/api/profile", requestOptions)
     nama.innerText = `Nama: ${result.name}`;
     email.innerText = `Email: ${result.email}`;
     saldo.innerText = `Saldo: ${result.saldo}`;
-    nomorWallet.innerText = `Role: ${result.nomor_wallet}`;
+    nomorWallet.innerText = `Nomor wallet: ${result.nomor_wallet}`;
 
     profileEl.append(uid, nama, email, saldo, nomorWallet);
   })

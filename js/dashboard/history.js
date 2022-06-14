@@ -36,6 +36,8 @@ let index = 1;
 fetch("https://harpay-api.herokuapp.com/transaksi/cekHistory", requestOptions)
   .then((response) => response.json())
   .then((result) => {
+    // console.log(result);
+
     result.data.forEach((history) => {
       // creating element
       const trEl = document.createElement("tr");
@@ -43,16 +45,18 @@ fetch("https://harpay-api.herokuapp.com/transaksi/cekHistory", requestOptions)
       const noTd = document.createElement("td");
       const jenisTransaksiTd = document.createElement("td");
       const nominalPengeluaranTd = document.createElement("td");
+      const tujuanTd = document.createElement("td");
       const jumlahTopupTd = document.createElement("td");
 
       noTd.innerText = index;
       jenisTransaksiTd.innerText = history.jenisTransaksi;
       nominalPengeluaranTd.innerText = history.nominalPengeluaran;
+      tujuanTd.innerText = history.akunTujuanTransfer;
       jumlahTopupTd.innerText = history.jumlahTopup;
 
       index++;
 
-      trEl.append(noTd, jenisTransaksiTd, nominalPengeluaranTd, jumlahTopupTd);
+      trEl.append(noTd, jenisTransaksiTd, nominalPengeluaranTd, tujuanTd, jumlahTopupTd);
       bodyTableHistory.append(trEl);
     });
 

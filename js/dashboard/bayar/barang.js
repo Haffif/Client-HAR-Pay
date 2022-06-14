@@ -247,16 +247,16 @@ submitBtn.addEventListener("click", (e) => {
           resultContent.classList.add("alert");
           resultContent.classList.add("alert-success");
           resultContent.innerText = `${result.message}. Kamu membeli ${selectedBarang} dengan harga ${hargaBayar} menggunakan ${selectedMetodeBayar}.`;
-        } else {
-          resultContent.classList.add("alert");
-          resultContent.classList.add("alert-danger");
-          resultContent.innerText = "Transaction failed";
         }
-
-        resultEl.append(resultContent);
-        document.body.scrollTop = 0;
-        document.documentElement.scrollTop = 0;
       })
-      .catch((error) => console.log("error", error));
+      .catch((error) => {
+        resultContent.classList.add("alert");
+        resultContent.classList.add("alert-danger");
+        resultContent.innerText = "Transaction failed";
+      });
+    
+    resultEl.append(resultContent);
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
   }
 });

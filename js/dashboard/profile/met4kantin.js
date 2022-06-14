@@ -28,7 +28,7 @@ fetch("https://met4kantin.herokuapp.com/api/profile", requestOptions)
     const saldo = document.createElement("li");
 
     uid.innerText = `User ID: ${result.data.uid}`;
-    nama.innerText = `Nama: ${result.data.nama}`;
+    nama.innerText = `Nama: ${result.data.name}`;
     email.innerText = `Email: ${result.data.email}`;
     password.innerText = `Password: ${result.data.pass}`;
     role.innerText = `Role: ${result.data.role}`;
